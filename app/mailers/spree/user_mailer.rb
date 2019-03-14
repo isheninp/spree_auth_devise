@@ -19,5 +19,10 @@ module Spree
       devise_mail(record, :unlock_instructions, opts)
     end
     
+    def devise_mail(record, action, opts = {}, &block)
+      initialize_from_record(record)
+      mail headers_for(action, opts), &block
+    end
+    
   end
 end
