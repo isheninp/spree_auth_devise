@@ -1,5 +1,6 @@
 module Spree
   class UserMailer < BaseMailer
+    
     def reset_password_instructions(user, token, *_args)
       @edit_password_reset_url = spree.edit_spree_user_password_url(reset_password_token: token, host: Spree::Store.current.url)
 
@@ -12,5 +13,11 @@ module Spree
 
       mail to: user.email, from: from_address, subject: Spree::Store.current.name + ' ' + I18n.t(:subject, scope: [:devise, :mailer, :confirmation_instructions])
     end
+    
+    def unlock_instructions(record, token, opts={})
+      @token = token
+      devise_mail(record, :unlock_instructions, opts)
+    end
+    
   end
 end
