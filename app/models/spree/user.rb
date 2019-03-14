@@ -4,7 +4,7 @@ module Spree
     include UserMethods
     include UserPaymentSource
 
-    devise :database_authenticatable, :registerable, :recoverable,
+    devise :database_authenticatable, :registerable, :recoverable, :lockable,
            :rememberable, :trackable, :encryptable, encryptor: 'authlogic_sha512'
     devise :confirmable if Spree::Auth::Config[:confirmable]
     devise :validatable if Spree::Auth::Config[:validatable]
