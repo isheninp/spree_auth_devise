@@ -3,5 +3,8 @@ class AddConfirmableToUsers < SpreeExtension::Migration[4.2]
     add_column :spree_users, :confirmation_token, :string
     add_column :spree_users, :confirmed_at, :datetime
     add_column :spree_users, :confirmation_sent_at, :datetime
+    add_column :spree_users, :failed_attempts, :integer, default: 0
+    add_column :spree_users, :unlock_token, :string
+    add_column :spree_users, :locked_at, :datetime
   end
 end
